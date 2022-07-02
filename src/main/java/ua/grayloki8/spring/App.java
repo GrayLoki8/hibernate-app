@@ -16,8 +16,13 @@ public class App {
 
         try {
             currentSession.beginTransaction();
-            Person person = currentSession.get(Person.class, 1);
-            System.out.println(person);
+            Person person=new Person("Loki",2);
+            Person person2=new Person("Tor",24);
+            Person person3=new Person("Odin",52);
+            currentSession.save(person);
+            currentSession.save(person2);
+            currentSession.save(person3);
+
             currentSession.getTransaction().commit();
         } finally {
 
