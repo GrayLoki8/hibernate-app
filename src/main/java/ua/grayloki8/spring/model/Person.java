@@ -21,6 +21,9 @@ public class Person {
     @OneToMany(mappedBy = "owner")
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private List<Item> items;
+    @OneToOne(mappedBy = "person")
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private Passport passport;
     public void addItem(Item item){
         if (this.items==null){
             items=new ArrayList<>();
