@@ -17,8 +17,7 @@ public class App {
         try {
             currentSession.beginTransaction();
             Person person = currentSession.get(Person.class, 2);
-            person.setName(person.getName()+" Super");
-
+            currentSession.delete(person);
             currentSession.getTransaction().commit();
         } finally {
 
