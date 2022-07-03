@@ -1,6 +1,7 @@
 package ua.grayloki8.spring.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Person_test")
@@ -14,11 +15,21 @@ public class Person {
     private String name;
     @Column(name = "age")
     private int age;
+    @OneToMany(mappedBy = "owner")
+    private List<Item> items;
 
     public Person() {
     }
 
-    public Person( String name, int age) {
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    public Person(String name, int age) {
         this.name = name;
         this.age = age;
     }

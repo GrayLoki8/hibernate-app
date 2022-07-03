@@ -3,6 +3,7 @@ package ua.grayloki8.spring;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import ua.grayloki8.spring.model.Item;
 import ua.grayloki8.spring.model.Person;
 
 import java.util.List;
@@ -12,13 +13,18 @@ import java.util.List;
  */
 public class App {
     public static void main(String[] args) {
-        Configuration configuration = new Configuration().addAnnotatedClass(Person.class);
+        Configuration configuration = new Configuration().addAnnotatedClass(Person.class).
+                addAnnotatedClass(Item.class);
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         Session currentSession = sessionFactory.getCurrentSession();
 
         try {
             currentSession.beginTransaction();
-            currentSession.createQuery("update Person set name='test' where age<30").executeUpdate();
+
+            Person person = currentSession.get(Person.class, 3);
+            System.out.println(person);
+            List<Item> items = person.getItems();
+            System.out.println(items);
             currentSession.getTransaction().commit();
 
         } finally {
