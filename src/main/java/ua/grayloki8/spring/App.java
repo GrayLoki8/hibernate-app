@@ -5,6 +5,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import ua.grayloki8.spring.model.Person;
 
+import java.util.List;
+
 /**
  * Hello world!
  */
@@ -16,9 +18,9 @@ public class App {
 
         try {
             currentSession.beginTransaction();
-            Person person = currentSession.get(Person.class, 2);
-            currentSession.delete(person);
+            currentSession.createQuery("update Person set name='test' where age<30").executeUpdate();
             currentSession.getTransaction().commit();
+
         } finally {
 
             sessionFactory.close();
