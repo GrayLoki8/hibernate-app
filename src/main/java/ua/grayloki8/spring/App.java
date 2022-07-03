@@ -6,6 +6,8 @@ import org.hibernate.cfg.Configuration;
 import ua.grayloki8.spring.model.Item;
 import ua.grayloki8.spring.model.Person;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -20,16 +22,12 @@ public class App {
 
         try {
             currentSession.beginTransaction();
-            Person person = currentSession.get(Person.class, 2);
-            Item item1 = new Item("Item1",person);
-            Item item2 = new Item("Item2",person);
-            Item item3 = new Item("Item3",person);
-            currentSession.save(item1);
-            currentSession.save(item2);
-            currentSession.save(item3);
-            person.getItems().add(item1);
-            person.getItems().add(item2);
-            person.getItems().add(item3);
+            Person person = new Person("Ser",44);
+            Item item1 = new Item("Super Item",person);
+            person.setItems(new ArrayList<Item>(Collections.singleton(item1)));
+            currentSession.persist(person);
+
+
             currentSession.getTransaction().commit();
 
         } finally {
