@@ -22,9 +22,10 @@ public class App {
 
         try {
             currentSession.beginTransaction();
-            Person person = new Person("Ser2",44);
-            Item item1 = new Item("Super Item2",person);
-            person.setItems(new ArrayList<Item>(Collections.singleton(item1)));
+            Person person = new Person("Test",34);
+            person.addItem(new Item("1 Item"));
+            person.addItem(new Item("2 Item"));
+            person.addItem(new Item("3 Item"));
             currentSession.save(person);
 
 

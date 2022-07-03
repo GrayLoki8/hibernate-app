@@ -3,6 +3,7 @@ package ua.grayloki8.spring.model;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,13 @@ public class Person {
     @OneToMany(mappedBy = "owner")
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private List<Item> items;
-
+    public void addItem(Item item){
+        if (this.items==null){
+            items=new ArrayList<>();
+        }
+        this.items.add(item);
+        item.setOwner(this);
+    }
     public Person() {
     }
 

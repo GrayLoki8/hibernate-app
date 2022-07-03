@@ -15,9 +15,9 @@ public class Item {
     @JoinColumn(name = "person_id",referencedColumnName = "id")
     private Person owner;
 
-    public Item(String iteName,Person person) {
+    public Item(String iteName ) {
         this.iteName = iteName;
-        this.owner=person;
+
     }
 
     public Item() {
