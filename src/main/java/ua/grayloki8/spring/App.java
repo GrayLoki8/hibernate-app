@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import ua.grayloki8.spring.model.Item;
+import ua.grayloki8.spring.model.Passport;
 import ua.grayloki8.spring.model.Person;
 
 import java.util.ArrayList;
@@ -16,18 +17,16 @@ import java.util.List;
 public class App {
     public static void main(String[] args) {
         Configuration configuration = new Configuration().addAnnotatedClass(Person.class).
-                addAnnotatedClass(Item.class);
+                addAnnotatedClass(Passport.class).addAnnotatedClass(Item.class);
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         Session currentSession = sessionFactory.getCurrentSession();
 
         try {
             currentSession.beginTransaction();
-            Person person = new Person("Test",34);
-            person.addItem(new Item("1 Item"));
-            person.addItem(new Item("2 Item"));
-            person.addItem(new Item("3 Item"));
+            Person person = new Person("Grand Loki", 40);
+            Passport passport = new Passport( 123456);
+            person.setPassport(passport);
             currentSession.save(person);
-
 
             currentSession.getTransaction().commit();
 

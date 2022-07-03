@@ -13,8 +13,7 @@ public class Passport implements Serializable {
     @Column(name = "passport_number")
     private int passportNumber;
 
-    public Passport(Person person, int passportNumber) {
-        this.person = person;
+    public Passport(  int passportNumber) {
         this.passportNumber = passportNumber;
     }
 

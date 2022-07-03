@@ -47,6 +47,15 @@ public class Person {
         this.age = age;
     }
 
+    public Passport getPassport() {
+        return passport;
+    }
+
+    public void setPassport(Passport passport) {
+        this.passport = passport;
+        this.passport.setPerson(this);
+    }
+
     public int getId() {
         return id;
     }
