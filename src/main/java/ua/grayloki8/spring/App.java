@@ -20,11 +20,16 @@ public class App {
 
         try {
             currentSession.beginTransaction();
-
-            Person person = currentSession.get(Person.class, 3);
-            System.out.println(person);
-            List<Item> items = person.getItems();
-            System.out.println(items);
+            Person person = currentSession.get(Person.class, 2);
+            Item item1 = new Item("Item1",person);
+            Item item2 = new Item("Item2",person);
+            Item item3 = new Item("Item3",person);
+            currentSession.save(item1);
+            currentSession.save(item2);
+            currentSession.save(item3);
+            person.getItems().add(item1);
+            person.getItems().add(item2);
+            person.getItems().add(item3);
             currentSession.getTransaction().commit();
 
         } finally {
