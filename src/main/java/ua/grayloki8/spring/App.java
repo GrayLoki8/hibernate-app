@@ -22,10 +22,10 @@ public class App {
 
         try {
             currentSession.beginTransaction();
-            Person person = new Person("Ser",44);
-            Item item1 = new Item("Super Item",person);
+            Person person = new Person("Ser2",44);
+            Item item1 = new Item("Super Item2",person);
             person.setItems(new ArrayList<Item>(Collections.singleton(item1)));
-            currentSession.persist(person);
+            currentSession.save(person);
 
 
             currentSession.getTransaction().commit();
