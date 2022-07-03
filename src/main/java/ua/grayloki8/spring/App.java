@@ -16,12 +16,8 @@ public class App {
 
         try {
             currentSession.beginTransaction();
-            Person person=new Person("Loki",2);
-            Person person2=new Person("Tor",24);
-            Person person3=new Person("Odin",52);
-            currentSession.save(person);
-            currentSession.save(person2);
-            currentSession.save(person3);
+            Person person = currentSession.get(Person.class, 2);
+            person.setName(person.getName()+" Super");
 
             currentSession.getTransaction().commit();
         } finally {
